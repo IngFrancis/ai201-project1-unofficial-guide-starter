@@ -41,7 +41,13 @@ python src\document_pipeline.py
 python src\embed_retrieve.py
 ```
 
-6. Run the Gradio app.
+6. Run the evaluation script.
+
+```powershell
+python src\evaluate.py
+```
+
+7. Run the Gradio app.
 
 ```powershell
 python app.py
@@ -65,20 +71,20 @@ This knowledge is valuable because official college pages do not always explain 
 
 ## Document Sources
 
-| #   | Source                                   | Type                             | URL or file path                                           |
-| --- | ---------------------------------------- | -------------------------------- | ---------------------------------------------------------- |
-| 1   | Rate My Professors - Livingstone College | Student/professor reviews        | `documents/raw/01_rate_my_professors_livingstone.txt`      |
-| 2   | Rate My Professors - Professor Search    | Professor ratings                | `documents/raw/02_rate_my_professors_professor_search.txt` |
-| 3   | Niche - Livingstone College Overview     | College overview / ratings       | `documents/raw/03_niche_overview.txt`                      |
-| 4   | Niche - Livingstone College Reviews      | Student reviews                  | `documents/raw/04_niche_reviews.txt`                       |
-| 5   | Niche - Campus Life                      | Campus life / student polls      | `documents/raw/05_niche_campus_life.txt`                   |
-| 6   | Appily - Livingstone Reviews             | Student reviews                  | `documents/raw/06_appily_reviews.txt`                      |
-| 7   | Reddit r/HBCU Livingstone Thread         | Informal student advice          | `documents/raw/07_reddit_livingstone_thread.txt`           |
-| 8   | Livingstone Student Affairs              | Official student resources       | `documents/raw/08_student_affairs.txt`                     |
-| 9   | Livingstone Residence Life               | Official housing information     | `documents/raw/09_residence_life.txt`                      |
-| 10  | Livingstone Campus Life                  | Official campus life information | `documents/raw/10_campus_life.txt`                         |
-| 11  | LuxeLife Dining Meal Plans               | Dining / meal plan information   | `documents/raw/11_meal_plans.txt`                          |
-| 12  | LuxeLife Dining Menu                     | Dining / food options            | `documents/raw/12_dining_menu.txt`                         |
+| #   | Source                                   | Type                             | URL                                                                 | Local file                                                 |
+| --- | ---------------------------------------- | -------------------------------- | ------------------------------------------------------------------- | ---------------------------------------------------------- |
+| 1   | Rate My Professors - Livingstone College | Student/professor reviews        | https://www.ratemyprofessors.com/school/5306                        | `documents/raw/01_rate_my_professors_livingstone.txt`      |
+| 2   | Rate My Professors - Professor Search    | Professor ratings                | https://www.ratemyprofessors.com/search/professors/5306?q=*         | `documents/raw/02_rate_my_professors_professor_search.txt` |
+| 3   | Niche - Livingstone College Overview     | College overview / ratings       | https://www.niche.com/colleges/livingstone-college/                 | `documents/raw/03_niche_overview.txt`                      |
+| 4   | Niche - Livingstone College Reviews      | Student reviews                  | https://www.niche.com/colleges/livingstone-college/reviews/         | `documents/raw/04_niche_reviews.txt`                       |
+| 5   | Niche - Campus Life                      | Campus life / student polls      | https://www.niche.com/colleges/livingstone-college/campus-life/     | `documents/raw/05_niche_campus_life.txt`                   |
+| 6   | Appily - Livingstone Reviews             | Student reviews                  | https://www.appily.com/colleges/livingstone-college/reviews         | `documents/raw/06_appily_reviews.txt`                      |
+| 7   | Reddit r/HBCU Livingstone Thread         | Informal student advice          | https://www.reddit.com/r/HBCU/comments/1mipw1z/livingstone_college/ | `documents/raw/07_reddit_livingstone_thread.txt`           |
+| 8   | Livingstone Student Affairs              | Official student resources       | https://livingstone.edu/students/                                   | `documents/raw/08_student_affairs.txt`                     |
+| 9   | Livingstone Residence Life               | Official housing information     | https://livingstone.edu/students/residence-life/                    | `documents/raw/09_residence_life.txt`                      |
+| 10  | Livingstone Campus Life                  | Official campus life information | https://livingstone.edu/campus-life/                                | `documents/raw/10_campus_life.txt`                         |
+| 11  | LuxeLife Dining Meal Plans               | Dining / meal plan information   | https://www.luxelifedining.com/livingstone-mealplans                | `documents/raw/11_meal_plans.txt`                          |
+| 12  | LuxeLife Dining Menu                     | Dining / food options            | https://www.luxelifedining.com/livingstone-menu                     | `documents/raw/12_dining_menu.txt`                         |
 
 ---
 
@@ -102,6 +108,47 @@ The final chunk count is low because the collected documents are short. This is 
 
 ---
 
+## Sample Chunks
+
+Below are five labeled sample chunks from the processed document collection. Each chunk keeps its source document name so retrieved answers can be traced back to the original document.
+
+### Sample Chunk 1
+
+**Source document:** `04_niche_reviews.txt`
+**Source title:** Niche - Livingstone College Reviews
+
+Students describe Livingstone College as a close-knit and supportive environment. Reviews mention school pride, diversity, smaller class sizes, approachable professors and staff, and opportunities for academic and personal growth. Some students also mention that the college has areas that could improve, such as communication, campus organization, housing, dining, facilities, transportation, and academic or career resources.
+
+### Sample Chunk 2
+
+**Source document:** `06_appily_reviews.txt`
+**Source title:** Appily - Livingstone College Reviews
+
+Student reviews on Appily describe Livingstone as a student-friendly campus with helpful staff and professors. The reviews highlight a supportive environment where students can build relationships and receive guidance. Some reviews also point out areas where the student experience could improve, including campus resources, organization, and student services.
+
+### Sample Chunk 3
+
+**Source document:** `07_reddit_livingstone_thread.txt`
+**Source title:** Reddit r/HBCU - Livingstone College Thread
+
+The Reddit thread gives informal advice about attending Livingstone College. It suggests that students should be prepared to advocate for themselves, keep copies of important financial aid and housing documents, and follow up when processes move slowly. The thread also encourages students to make friends and build community while understanding that some campus systems may feel underfunded or slow.
+
+### Sample Chunk 4
+
+**Source document:** `10_campus_life.txt`
+**Source title:** Livingstone College Campus Life
+
+The Livingstone College Campus Life source describes student life as including friendship, activities, housing, Greek life, learning communities, dining, and experiences in Salisbury. This source gives an official view of campus life and helps answer questions about student involvement and the overall campus environment.
+
+### Sample Chunk 5
+
+**Source document:** `11_meal_plans.txt`
+**Source title:** LuxeLife Dining - Livingstone Meal Plans
+
+The meal plan source explains that Livingstone students have access to resident and commuter meal plans. The resident meal plan shown includes 19 meals per week, and meals can be used at City Market or City Market Takeout. Commuter plans are described as convenient and budget-friendly, valid for one semester, and non-transferable.
+
+---
+
 ## Embedding Model
 
 **Model used:**
@@ -111,6 +158,54 @@ The final chunk count is low because the collected documents are short. This is 
 I used `all-MiniLM-L6-v2` because it is free, runs locally, does not require an API key, and is fast enough for a small student project. It worked well for this corpus because the questions and documents were short and mostly in English.
 
 If I were deploying this system for real users and cost were not a constraint, I would compare stronger embedding models based on retrieval accuracy, context length, latency, multilingual support, and performance on noisy student-generated text. I would also consider whether to use a hosted embedding API for better quality or keep the system local for privacy and lower cost.
+
+---
+
+## Retrieval Test Results
+
+I tested retrieval using three representative queries from my evaluation plan. The system returned the top chunks using ChromaDB and `all-MiniLM-L6-v2` embeddings.
+
+### Retrieval Test 1
+
+**Query:** What do students say are the main strengths of Livingstone College?
+
+**Top returned chunks:**
+
+1. `04_niche_reviews.txt` — Niche - Livingstone College Reviews — distance: 0.2499
+2. `06_appily_reviews.txt` — Appily - Livingstone College Reviews — distance: 0.2702
+3. `10_campus_life.txt` — Livingstone College Campus Life — distance: 0.3299
+4. `07_reddit_livingstone_thread.txt` — Reddit r/HBCU - Livingstone College Thread — distance: 0.3318
+
+**Why the returned chunks are relevant:**
+The top two chunks are directly relevant because they contain student review language about Livingstone’s strengths, including support, community, helpful professors/staff, smaller classes, diversity, and campus pride. The campus life and Reddit chunks also add useful context about student life and community.
+
+### Retrieval Test 2
+
+**Query:** What are common complaints students mention about Livingstone College?
+
+**Top returned chunks:**
+
+1. `04_niche_reviews.txt` — Niche - Livingstone College Reviews — distance: 0.286
+2. `06_appily_reviews.txt` — Appily - Livingstone College Reviews — distance: 0.3055
+3. `07_reddit_livingstone_thread.txt` — Reddit r/HBCU - Livingstone College Thread — distance: 0.3212
+4. `10_campus_life.txt` — Livingstone College Campus Life — distance: 0.4033
+
+**Why the returned chunks are relevant:**
+These chunks are relevant because they include student perspectives and informal advice, which are the best sources for complaints and lived experience. The Niche and Appily chunks directly mention concerns such as organization, communication, facilities, dining, housing, transportation, and student resources.
+
+### Retrieval Test 3
+
+**Query:** What dining or meal plan information is available for Livingstone students?
+
+**Top returned chunks:**
+
+1. `12_dining_menu.txt` — LuxeLife Dining - Livingstone Dining Menu — distance: 0.2022
+2. `11_meal_plans.txt` — LuxeLife Dining - Livingstone Meal Plans — distance: 0.2834
+3. `10_campus_life.txt` — Livingstone College Campus Life — distance: 0.3628
+4. `07_reddit_livingstone_thread.txt` — Reddit r/HBCU - Livingstone College Thread — distance: 0.4622
+
+**Why the returned chunks are relevant:**
+The top two chunks are directly about dining and meal plans, so retrieval worked especially well for this query. The system correctly prioritized the LuxeLife Dining sources over general campus-life or student-advice sources.
 
 ---
 
@@ -135,6 +230,77 @@ This prompt is designed to stop the model from answering based on general knowle
 
 **How source attribution is surfaced in the response:**
 Source attribution is handled both in the prompt and in the interface. The model is instructed to mention source titles naturally, but the system also programmatically displays the retrieved sources in the Gradio interface. The interface shows each source title, source file, URL, and distance score in the “Retrieved from” box. This means source attribution does not depend only on the LLM remembering to cite sources.
+
+---
+
+## Example Responses
+
+### Example Response 1
+
+**User query:** What do students say are the main strengths of Livingstone College?
+
+**System response:**
+According to the Niche reviews page, students describe Livingstone College as close-knit, supportive, and helpful for academic and personal growth. They mention approachable professors and staff, smaller class sizes, school pride, diversity, and a welcoming environment as the main strengths. Similarly, Appily reviews also highlight the student-friendly campus environment and willing staff and professors.
+
+**Source attribution shown:**
+
+- Niche - Livingstone College Reviews — `04_niche_reviews.txt`
+- Appily - Livingstone College Reviews — `06_appily_reviews.txt`
+- Livingstone College Campus Life — `10_campus_life.txt`
+- Reddit r/HBCU - Livingstone College Thread — `07_reddit_livingstone_thread.txt`
+
+### Example Response 2
+
+**User query:** What dining or meal plan information is available for Livingstone students?
+
+**System response:**
+According to the LuxeLife Dining meal plan document, Livingstone College offers resident and commuter meal plans that can be used at City Market or City Market Takeout. The resident plan shown is a 19-meal plan, which gives students 19 meals per week. Commuter meal plans are valid for one semester and are non-transferable. The dining menu source also mentions dining dollars or bonus points for retail locations.
+
+**Source attribution shown:**
+
+- LuxeLife Dining - Livingstone Dining Menu — `12_dining_menu.txt`
+- LuxeLife Dining - Livingstone Meal Plans — `11_meal_plans.txt`
+- Livingstone College Campus Life — `10_campus_life.txt`
+
+### Out-of-Scope Refusal Example
+
+**User query:** What scholarships does Livingstone offer for computer science students?
+
+**System response:**
+I don't have enough information in the provided documents to answer that.
+
+**Why this matters:**
+This shows that the system does not try to invent information when the retrieved documents do not contain the answer.
+
+---
+
+## Query Interface
+
+The project uses a Gradio web interface.
+
+**Input field:**
+The user enters a natural-language question about Livingstone College student life, dining, housing, professors, or campus resources.
+
+**Output fields:**
+The interface returns two outputs:
+
+1. **Answer** — a grounded response generated only from retrieved document context.
+2. **Retrieved from** — a source list showing the source title, file name, distance score, and URL for each retrieved chunk.
+
+### Sample Interaction Transcript
+
+**User input:**
+What should a new student know before coming to Livingstone?
+
+**Answer output:**
+Before coming to Livingstone, a new student should know that the college offers a mix of friendship, activities, housing, Greek life, learning communities, food, and local Salisbury experiences. Students describe Livingstone as close-knit and supportive, but they also mention areas that could improve, including organization and communication. Informal Reddit advice suggests that students should keep copies of financial aid documents, follow up when processes move slowly, make friends, and advocate for themselves.
+
+**Retrieved from output:**
+
+- Livingstone College Campus Life — `10_campus_life.txt` — distance: 0.3732
+- Niche - Livingstone College Reviews — `04_niche_reviews.txt` — distance: 0.3945
+- Reddit r/HBCU - Livingstone College Thread — `07_reddit_livingstone_thread.txt` — distance: 0.4162
+- Appily - Livingstone College Reviews — `06_appily_reviews.txt` — distance: 0.4456
 
 ---
 
